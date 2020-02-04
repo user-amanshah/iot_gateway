@@ -27,7 +27,7 @@ public class SystemCpuUtiltask {
 		load= osBeanmemory.getSystemCpuLoad()*100;	
 		
 		
-		if(load==-1.0 || load ==0.0) {  /// error correction as initial value comes to be 
+		if(load==-100.0 || load ==0.0) {  /// error correction as initial value comes to be 
 											//-1 or 0 . This handles test cases
 			load=1.0;	
 		}
