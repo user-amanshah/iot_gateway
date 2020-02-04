@@ -1,1 +1,4 @@
 /ConnectedDevicesConfig.props
+
+# ignore all props
+*.props

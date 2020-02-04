@@ -3,9 +3,18 @@
  */
 package neu.amanshah.connecteddevices.labs;
 
+
+
+
+import static org.junit.Assert.assertTrue;
+import neu.amanshah.connecteddevices.labs.module02.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+//import neu.amanshah.connecteddevices.labs.module02.TempEmulatorAdaptor;
+//import neu.amanshah.connecteddevices.labs.module02.TempSensorEmulator;
 
 /**
  * Test class for all requisite Module02 functionality.
@@ -23,31 +32,50 @@ public class Module02Test
 {
 	// setup methods
 	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception
-	{
-	}
+	
+	TempSensorEmulator emulator = new TempSensorEmulator();
 	
 	/**
 	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception
-	{
-	}
-	
-	// test methods
-	
-	/**
-	 * 
 	 */
 	@Test
-	public void testSomething()
+	public void checkconf()
 	{
-//		fail("Not yet implemented");
+		// check if the file exists or not
+		
+		ConfigUtil conf_obj = new ConfigUtil();
+		
+		// check if the values are getting returned from the config file
+		//check all neccessary smtp parameters
+		boolean flag=conf_obj.loadconfig();
+		assertTrue(flag==true);
+		assertTrue(conf_obj.getvalue("smtp.cloud", "port") != null);
+		assertTrue(conf_obj.getvalue("smtp.cloud", "host") != null);
+		assertTrue(conf_obj.getvalue("smtp.cloud", "fromAddr") != null);
+		assertTrue(conf_obj.getvalue("smtp.cloud", "toAddr") != null);
+		assertTrue(conf_obj.getvalue("smtp.cloud", "password") != null);
+		
+		
 	}
+
 	
+	@Test
+	public void initialize()
+	{
+		
+		assertTrue(emulator.getCurrent() <100.0);
+		
+		assertTrue(emulator.getAvgtemp() <100.0);
+		assertTrue(emulator.getMaxtemp() <100.0);
+		
+		 // it follows that if avg and current values are in range , the max and min values are in range
+				//check if the function returns valid smtp parameters
+
+
+		
+	}
+
+
+
+
 }
