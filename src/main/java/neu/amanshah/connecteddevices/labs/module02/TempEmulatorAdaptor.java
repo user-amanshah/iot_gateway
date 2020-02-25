@@ -42,8 +42,9 @@ public class TempEmulatorAdaptor {
 
 		
 //		Loop for displaying the log info 
-			// call emulator task to get temp parameters
-		for(int count =0 ;count <15 ;count++) {
+
+// call emulator task to get temp parameters
+		for(int count =0 ;count <10 ;count++) {
 			
 			emulator.demo();
 			/*
@@ -56,9 +57,11 @@ public class TempEmulatorAdaptor {
 //			double current = emulator.getCurrent();
 	// check if sudden spike or fall in temp values
 			// if true send email
-			if( Math.abs(getAvg()-getCurrent())>4.0) {
+			if( Math.abs(getAvg()-getCurrent())>2.0) {
 				
-String messagestring="The temperature has suddenly changed to high percent value from average "+getAvg()+"to a sudden change of "+getCurrent()+"This is an auto generated email";
+				String messagestring="Temperatur\n\t time: "+ emulator.getDate() +"\n\t current:"+emulator.getCurrent()+"\n\tAverage:"+emulator.getAvgtemp()+"\n \t Samples: 10"+"\n\t Min:"+emulator.getMintemp()+"\n\t max: "+emulator.getMaxtemp();
+			    				
+///String messagestring="The temperature has suddenly changed to high percent value from average "+getAvg()+"to a sudden change of "+getCurrent()+"This is an auto generated email";
 			                
 				SmtpClientConnector.mailing(messagestring);
 			}
@@ -75,8 +78,8 @@ String messagestring="The temperature has suddenly changed to high percent value
 //				String format="%1$tF %1$tT %4$-4s %5$s %n";  // expression for the format to be used
 //				
 //				System.setProperty("java.util.logging.SimpleFormatter.format", format );
-//		
-			String message="Temperatur\n\t time: "+ emulator.getDate() +"\n\t current:"+emulator.getCurrent()+"\n\tAverage:"+emulator.getAvgtemp()+"\n\t Min:"+emulator.getMintemp()+"\n\t max: "+emulator.getMaxtemp();
+	//		
+			String message="Temperatur\n\t time: "+ emulator.getDate() +"\n\t current:"+emulator.getCurrent()+"\n\tAverage:"+emulator.getAvgtemp()+"\n \t Samples: 10"+"\n\t Min:"+emulator.getMintemp()+"\n\t max: "+emulator.getMaxtemp();
 			    
 			
 
