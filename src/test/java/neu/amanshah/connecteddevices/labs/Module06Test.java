@@ -1,11 +1,18 @@
+
 /**
  * 
  */
+
 package neu.amanshah.connecteddevices.labs;
+import neu.amanshah.connecteddevices.labs.module06.MqttClientConnector;
+
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import neu.amanshah.connecteddevices.labs.module06.MqttClientConnector;
 
 /**
  * Test class for all requisite Module06 functionality.
@@ -29,6 +36,8 @@ public class Module06Test
 	@Before
 	public void setUp() throws Exception
 	{
+		
+		
 	}
 	
 	/**
@@ -44,10 +53,46 @@ public class Module06Test
 	/**
 	 * 
 	 */
+	
+	
 	@Test
-	public void testSomething()
+	public void test_connection()
+	
 	{
-//		fail("Not yet implemented");
+		//checking if connection to broker is successfull
+		MqttClientConnector mqtt_obj = new MqttClientConnector();
+		assertTrue(mqtt_obj.conection_mqtt());
+		
+	}
+	
+	@Test
+	public void test_subscribing()
+	{
+		//checking if sunscribing to topic is successfull
+		MqttClientConnector mqtt_obj = new MqttClientConnector();
+		assertTrue(mqtt_obj.subscribing_to_mqtt());
+		
+	}
+
+	
+	@Test
+	public void test_unsubscribing()
+	
+	{
+		//checking if unsunscribing to topic is successfull
+		MqttClientConnector mqtt_obj = new MqttClientConnector();
+		assertTrue(mqtt_obj.unsubscribe_topic());
+		
+	}
+	
+	@Test
+	public void test_disconnecting()
+	
+	{
+		//checking if disconnection to topic is successfull
+		MqttClientConnector mqtt_obj = new MqttClientConnector();
+		assertTrue(mqtt_obj.disconnect_session());
+		
 	}
 	
 }
