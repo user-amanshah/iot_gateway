@@ -3,9 +3,13 @@
  */
 package neu.amanshah.connecteddevices.labs;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import neu.amanshah.connecteddevices.labs.module07.CoapServerManager;
 
 /**
  * Test class for all requisite Module07 functionality.
@@ -38,16 +42,28 @@ public class Module07Test
 	public void tearDown() throws Exception
 	{
 	}
-	
 	// test methods
-	
 	/**
-	 * 
+	 * Unit Test Method to check the functioning of start server method
 	 */
 	@Test
-	public void testSomething()
+	public void test_server_start()
 	{
-//		fail("Not yet implemented");
+		CoapServerManager coap_mang = new CoapServerManager();
+		coap_mang.start();
+		assertTrue(CoapServerManager.flag_variable_start);
+		coap_mang.stop();
+	}
+	/**
+	 * Unit Test Method to check the functioning of addendpoints method
+	 */
+	@Test
+	public void test_addendpoints()
+	{
+		CoapServerManager coap_mang = new CoapServerManager();
+		coap_mang.start();
+		assertTrue(CoapServerManager.flag_variable_add);
+		coap_mang.stop();
 	}
 	
 }
