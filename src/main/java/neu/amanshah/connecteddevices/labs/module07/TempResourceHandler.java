@@ -6,18 +6,24 @@ import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.coap.CoAP.ResponseCode;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
+
+//class to declare all serving methods like get,post,delete etc
 public class TempResourceHandler extends CoapResource
 {
+	//initialix=ze logger to print
 	private static final Logger _Logger = Logger.getLogger(TempResourceHandler.class.getName());
 	public TempResourceHandler(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	public TempResourceHandler(String name, boolean visible) {
 		super(name, visible);
 		}
 	
+	
+	//method for get
 	@Override
 	public void handleGET(CoapExchange exchange) {
 		exchange.respond(ResponseCode.VALID, "Get resource ");
@@ -25,14 +31,14 @@ public class TempResourceHandler extends CoapResource
 	}
 
 	
-	// to complete the post function when get the request from the client
+	// method for the post 
 	@Override
 	public void handlePOST(CoapExchange exchange) {
 		exchange.respond(ResponseCode.CREATED, "Post resource ");
 		_Logger.info("Post request：" + exchange.getRequestText());
 	}
 
-	// to complete the put function when get the request from the client
+	// method for put
 	@Override
 	public void handlePUT(CoapExchange exchange) {
 		exchange.respond(ResponseCode.CHANGED, "Put resource");

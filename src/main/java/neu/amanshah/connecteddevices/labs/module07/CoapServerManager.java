@@ -11,14 +11,14 @@ import org.eclipse.californium.core.network.EndpointManager;
 
 
 public class CoapServerManager {
-	
+	// initializing flags
 	public static boolean flag_variable_start=false;
 	public static boolean flag_variable_add=false;
 	
 	
-	// static
+	// static initialization of variables
 	private static final Logger _Logger = Logger.getLogger(CoapServerManager.class.getName());
-	// private var's
+	// private variables declaration
 	private CoapServer _coapServer;
 	private int port;
 	// constructors
@@ -26,13 +26,15 @@ public class CoapServerManager {
 		super();
 		this.port=5683;
 	}
-	// public methods
+	// public methods to add resource to coap object
 	public void addResource(CoapResource resource)
 	{
 		if (resource != null) {
 			_coapServer.add(resource);
 		}
 	}
+	
+	//method to start the coap server
 	
 	public void start()
 	{
@@ -48,20 +50,18 @@ public class CoapServerManager {
 		}
 		_Logger.info("Starting CoAP server...");
 		_coapServer.start();
-//		try {
-//			TimeUnit.SECONDS.sleep(2);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		_coapServer.stop();
+	
 	}
+	
+	// method to stop the coap server
 	public void stop()
 	{
 		_Logger.info("Stopping CoAP server...");
 		_coapServer.stop();
 	}
 	
+	
+	//method to add end points to the socket
 	public void addendpoints() {
 		for(InetAddress inet_add : EndpointManager.getEndpointManager().getNetworkInterfaces()) {
 			if(inet_add.isLoopbackAddress()) {
