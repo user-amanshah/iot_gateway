@@ -7,6 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import neu.amanshah.connecteddevices.labs.module08.UbidotsApiConnector;
+import neu.amanshah.connecteddevices.labs.module08.Ubidots_connector;
+
 /**
  * Test class for all requisite Module08 functionality.
  * 
@@ -44,10 +47,47 @@ public class Module08Test
 	/**
 	 * 
 	 */
+	
+	
+	// test to sset up dummy temp value, connection to ubidots
 	@Test
-	public void testSomething()
+	public void test_UbidotsApi()
 	{
-//		fail("Not yet implemented");
+		double testTemp = 15.0;
+		
+		UbidotsApiConnector api = new UbidotsApiConnector();
+		api.publish(testTemp);
+		
+
+	}
+	
+	@Test
+	public void testUbidots_Clientconnector_method() 
+	{
+		// api token of ubidots
+		String testToken = "BBFF-DDJefJiPLcbNPpQHcfbGDM8Z4vJWiU";
+		
+		Ubidots_connector ubi = new Ubidots_connector("industrial.api.ubidots.com",testToken,"industrial.pem");
+		ubi.ubidots_mqtt_connect();
+		ubi.ubidots_mqtt_subscribe();
+		
+	}
+	
+	
+	// test to run simulated test to send data
+	@Test
+	public void test_publishing()
+	{
+		int i= 10;
+		while(i!=0)
+		{
+		String testData = "testing data ";
+		byte[] testPayload = testData.getBytes();
+		Ubidots_connector mqtt = new Ubidots_connector();
+		mqtt.ubidots_mqtt_connect();
+		mqtt.publishMessage("mqtt_topic", 2, testPayload);
+		i--;
+		}
 	}
 	
 }
